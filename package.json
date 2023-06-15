@@ -12,6 +12,7 @@
   "author": "Allan Okoth",
   "license": "ISC",
   "dependencies": {
+    "buffer": "^6.0.3",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "ipfs-http-client": "^60.0.1",

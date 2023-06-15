@@ -1,24 +1,16 @@
+require('dotenv').config();
 const shortid = require('short-id')
 const IPFS = require('ipfs-api');
+const { Buffer } = require('buffer')
 
-import { create as ipfsHttpClient } from 'ipfs-http-client'
-import { Buffer } from 'buffer'
-import { NFTAddress, NFTMarketplaceAddress, projectId, projectSecret } from "../config";
-
-const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
-
-const client = ipfsHttpClient({
+const auth = 'Basic ' + Buffer.from(process.env.projectId + ':' + process.env.projectSecret).toString('base64');
+const ipfs = IPFS({ 
     host: 'ipfs.infura.io',
-    port: 5001,
+    port: 5001, 
     protocol: 'https',
     headers: {
         authorization: auth,
     },
-});
-
-const ipfs = IPFS({ host: 'ipfs.infura.io',
-    port: 5001, 
-    protocol: 'https'
 });
 
 function routes(app, dbe, lms, accounts){
